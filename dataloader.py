@@ -12,7 +12,6 @@ board_size = 8
 
 
 def board_to_tensor(board_path):
-    board_size = 8
     tensor = np.zeros((board_size, board_size, len(pieces)))
     with open(board_path, 'r') as f:
         for x, line in enumerate(f.readlines()):
@@ -25,7 +24,6 @@ def board_to_tensor(board_path):
 def tensor_to_board(tensor):
     tensor = np.einsum('ijk->jki', tensor)
     board = ""
-    board_size = 8
     for x in range(board_size):
         for y in range(board_size):
             piece_index = np.argmax(tensor[x][y])
